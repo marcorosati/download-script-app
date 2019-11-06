@@ -9,7 +9,7 @@ var response;
 app.get('/', function (req, res) {
     console.log('request');
     res.status(200);
-    res.send('#!/bin/bash \n echo "Trying $HOOK_RETRIES times" \n while [ "$HOOK_RETRIES" != 0 ]; do \n echo -n "Checking if MySQL is up" \n if mysqlshow -h$MYSQL_SERVICE_HOST -u$MYSQL_USER -p$MYSQL_PASSWORD -P3306 $MYSQL_DATABASE &>/dev/nul \n then \n echo \'Database is up\' \nbreak \nelse \necho \'Database is down\' \nsleep $HOOK_SLEEP \nfi \nlet HOOK_RETRIES=$HOOK_RETRIES-1 \ndone \nif [ "$HOOK_RETRIES" = 0 ]; then \necho \'Too many tries\' \nexit 1 \nfi \nif mysql-h$MYSQL_SERVICE_HOST -u$MYSQL_USER -p$MYSQL_PASSWORD -P3306 $MYSQL_DATABASE << EOF \nCREATE TABLE IF NOT EXISTS users (user_id int(10) unsigned NOT NULL AUTO_INCREMENT,nome varchar(100)) ENGINE=InnoDB DEFAULT CHARSET=utf8; \ninsert into users(name) values (\'user1\'); \nEOF;'
+    res.send('#!/bin/bash \n echo "Trying $HOOK_RETRIES times" \n while [ "$HOOK_RETRIES" != 0 ]; do \n echo -n "Checking if MySQL is up" \n if mysqlshow -h$MYSQL_SERVICE_HOST -u$MYSQL_USER -p$MYSQL_PASSWORD -P3306 $MYSQL_DATABASE &>/dev/null \n then \n echo \'Database is up\' \nbreak \nelse \necho \'Database is down\' \nsleep $HOOK_SLEEP \nfi \nlet HOOK_RETRIES=$HOOK_RETRIES-1 \ndone \nif [ "$HOOK_RETRIES" = 0 ]; then \necho \'Too many tries\' \nexit 1 \nfi \nif mysql-h$MYSQL_SERVICE_HOST -u$MYSQL_USER -p$MYSQL_PASSWORD -P3306 $MYSQL_DATABASE << EOF \nCREATE TABLE IF NOT EXISTS users (user_id int(10) unsigned NOT NULL AUTO_INCREMENT,nome varchar(100)) ENGINE=InnoDB DEFAULT CHARSET=utf8; \ninsert into users(name) values (\'user1\'); \nEOF;'
 )});
 
 app.get('/healthz', function (req, res) {
