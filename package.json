@@ -1,0 +1,22 @@
+{
+  "name": "app-config",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcorosati/app-config.git"
+  },
+  "author": "marcorosati",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcorosati/app-config/issues"
+  },
+  "homepage": "https://github.com/marcorosati/app-config#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
